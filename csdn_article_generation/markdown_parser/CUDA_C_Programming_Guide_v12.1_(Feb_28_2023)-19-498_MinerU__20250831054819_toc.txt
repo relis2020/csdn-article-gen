@@ -1,0 +1,855 @@
+目录树：
+- Chapter 1. The Benefits of Using GPUs
+- Chapter 2. CUDA®: A General-Purpose Parallel Computing Platform and Programming Model
+- Chapter 3. A Scalable Programming Model
+- Chapter 4. Document Structure
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 5. Programming Model
+- 5.1. Kernels
+- 5.2. Thread Hierarchy
+- 5.2.1. Thread Block Clusters
+- 5.3. Memory Hierarchy
+- 5.4. Heterogeneous Programming
+- 5.5. Asynchronous SIMT Programming Model
+- 5.5.1. Asynchronous Operations
+- 5.6. Compute Capability
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 6. Programming Interface
+- 6.1. Compilation with NVCC
+- 6.1.1. Compilation Workflow
+- 6.1.1.1 Offline Compilation
+- 6.1.1.2 Just-in-Time Compilation
+- 6.1.2. Binary Compatibility
+- 6.1.3. PTX Compatibility
+- 6.1.4. Application Compatibility
+- 6.1.5. C++ Compatibility
+- 6.1.6. 64-Bit Compatibility
+- 6.2. CUDA Runtime
+- 6.2.1. Initialization
+- 6.2.2. Device Memory
+- 6.2.3. Device Memory L2 Access Management
+- 6.2.3.1 L2 cache Set-Aside for Persisting Accesses
+- 6.2.3.2 L2 Policy for Persisting Accesses
+- CUDA Stream Example
+- CUDA GraphKernelNode Example
+- 6.2.3.3 L2 Access Properties
+- 6.2.3.4 L2 Persistence Example
+- 6.2.3.5 Reset L2 Access to Normal
+- 6.2.3.6 Manage Utilization of L2 set-aside cache
+- 6.2.3.7Query L2 cache Properties
+- 6.2.3.8 Control L2 Cache Set-Aside Size for Persisting Memory Access
+- 6.2.4. Shared Memory
+- // Invoke kernel
+- 6.2.5. Distributed Shared Memory
+- 6.2.6. Page-Locked Host Memory
+- 6.2.6.1 Portable Memory
+- 6.2.6.2 Write-Combining Memory
+- 6.2.6.3 Mapped Memory
+- 6.2.7. Memory Synchronization Domains
+- 6.2.7.1 Memory Fence Interference
+- 6.2.7.2 Isolating Traffic with Domains
+- 6.2.7.3 Using Domains in CUDA
+- 6.2.8. Asynchronous Concurrent Execution
+- 6.2.8.1 Concurrent Execution between Host and Device
+- 6.2.8.2 Concurrent Kernel Execution
+- 6.2.8.3 Overlap of Data Transfer and Kernel Execution
+- 6.2.8.4 Concurrent Data Transfers
+- 6.2.8.5 Streams
+- 6.2.8.5.1 Creation and Destruction
+- 6.2.8.5.2 Default Stream
+- 6.2.8.5.3 Explicit Synchronization
+- 6.2.8.5.4 Implicit Synchronization
+- 6.2.8.5.5 Overlapping Behavior
+- 6.2.8.5.6 Host Functions (Callbacks)
+- 6.2.8.5.7 Stream Priorities
+- 6.2.8.6 Programmatic Dependent Launch and Synchronization
+- 6.2.8.6.1 Background
+- 6.2.8.6.2 API Description
+- 6.2.8.7 CUDA Graphs
+- 6.2.8.7.1 Graph Structure
+- 6.2.8.7.1.1 Node Types
+- 6.2.8.7.2 Creating a Graph Using Graph APIs
+- 6.2.8.7.3 Creating a Graph Using Stream Capture
+- 6.2.8.7.3.1 Cross-stream Dependencies and Events
+- 6.2.8.7.3.2 Prohibited and Unhandled Operations
+- 6.2.8.7.3.3 Invalidation
+- 6.2.8.7.4 Updating Instantiated Graphs
+- 6.2.8.7.4.1 Graph Update Limitations
+- 6.2.8.7.4.2 Whole Graph Update
+- 6.2.8.7.4.3 Individual node update
+- 6.2.8.7.4.4 Individual node enable
+- 6.2.8.7.5 Using Graph APIs
+- See Graph API.
+- 6.2.8.7.6 Device Graph Launch
+- 6.2.8.7.6.1 Device Graph Creation
+- 6.2.8.7.6.2 Device Graph Requirements
+- 6.2.8.7.6.3 Device Graph Upload
+- 6.2.8.7.6.4 Device Graph Update
+- 6.2.8.7.6.5 Device Launch
+- 6.2.8.7.6.6 Device Launch Modes
+- 6.2.8.7.6.7 Fire and Forget Launch
+- 6.2.8.7.6.8 Graph Execution Environments
+- 6.2.8.7.6.9 Tail Launch
+- 6.2.8.7.6.10 Tail Self-launch
+- 6.2.8.8 Events
+- 6.2.8.8.1 Creation and Destruction
+- 6.2.8.8.2 Elapsed Time
+- 6.2.8.9 Synchronous Calls
+- 6.2.9. Multi-Device System
+- 6.2.9.1 Device Enumeration
+- 6.2.9.2 Device Selection
+- 6.2.9.3 Stream and Event Behavior
+- 6.2.9.4 Peer-to-Peer Memory Access
+- 6.2.9.4.1 IOMMU on Linux
+- 6.2.9.5 Peer-to-Peer Memory Copy
+- 6.2.10. Unified Virtual Address Space
+- 6.2.11. Interprocess Communication
+- 6.2.12. Error Checking
+- 6.2.13. Call Stack
+- 6.2.14. Texture and Surface Memory
+- 6.2.14.1 Texture Memory
+- 6.2.14.1.1 Texture Object API
+- struct cudaTextureDesc
+- 6.2.14.1.2 16-Bit Floating-Point Textures
+- 6.2.14.1.3 Layered Textures
+- 6.2.14.1.4 Cubemap Textures
+- 6.2.14.1.5 Cubemap Layered Textures
+- 6.2.14.1.6 Texture Gather
+- 6.2.14.2 Surface Memory
+- 6.2.14.2.1 Surface Object API
+- 6.2.14.2.2 Cubemap Surfaces
+- 6.2.14.2.3 Cubemap Layered Surfaces
+- 6.2.14.3 CUDA Arrays
+- 6.2.14.4 Read/Write Coherency
+- 6.2.15. Graphics Interoperability
+- 6.2.15.1 OpenGL Interoperability
+- 6.2.15.2 Direct3D Interoperability
+- 6.2.15.2.1 Direct3D 9 Version
+- void Render()
+- 6.2.15.2.2 Direct3D 10 Version
+- 6.2.15.2.3 Direct3D 11 Version
+- 6.2.15.3 SLI Interoperability
+- 6.2.16. External Resource Interoperability
+- 6.2.16.1 Vulkan Interoperability
+- 6.2.16.1.1 Matching device UUIDs
+- 6.2.16.1.2 Importing Memory Objects
+- 6.2.16.1.3 Mapping Buffers onto Imported Memory Objects
+- 6.2.16.1.4 Mapping Mipmapped Arrays onto Imported Memory Objects
+- 6.2.16.1.5 Importing Synchronization Objects
+- 6.2.16.1.6 Signaling/Waiting on Imported Synchronization Objects
+- 6.2.16.2 OpenGL Interoperability
+- 6.2.16.3 Direct3D 12 Interoperability
+- 6.2.16.3.1 Matching Device LUIDs
+- 6.2.16.3.2 Importing Memory Objects
+- 6.2.16.3.3 Mapping Buffers onto Imported Memory Objects
+- 6.2.16.3.4 Mapping Mipmaped Arrays onto Imported Memory Objects
+- 6.2.16.3.5 Importing Synchronization Objects
+- 6.2.16.3.6 Signaling/Waiting on Imported Synchronization Objects
+- 6.2.16.4 Direct3D 11 Interoperability
+- 6.2.16.4.1 Matching Device LUIDs
+- 6.2.16.4.2 Importing Memory Objects
+- 6.2.16.4.3 Mapping Buffers onto Imported Memory Objects
+- 6.2.16.4.4 Mapping Mipmapped Arrays onto Imported Memory Objects
+- 6.2.16.4.5 Importing Synchronization Objects
+- 6.2.16.4.6 Signaling/Waiting on Imported Synchronization Objects
+- 6.2.16.5. NVIDIA Software Communication Interface Interoperability (NVSCI)
+- 6.2.16.5.1 Importing Memory Objects
+- 6.2.16.5.2 Mapping Buffers onto Imported Memory Objects
+- 6.2.16.5.3 Mapping Mipmapped Arrays onto Imported Memory Objects
+- 6.2.16.5.4 Importing Synchronization Objects
+- 6.2.16.5.5 Signaling/Waiting on Imported Synchronization Objects
+- 6.2.17. CUDA User Objects
+- 6.3. Versioning and Compatibility
+- 6.4. Compute Modes
+- 6.5. Mode Switches
+- 6.6. Tesla Compute Cluster Mode for Windows
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 7. Hardware Implementation
+- 7.1. SIMT Architecture
+- 7.2. Hardware Multithreading
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 8. Performance Guidelines
+- 8.1. Overall Performance Optimization Strategies
+- 8.2. Maximize Utilization
+- 8.2.1. Application Level
+- 8.2.2. Device Level
+- 8.2.3. Multiprocessor Level
+- 8.2.3.1 Occupancy Calculator
+- 8.3. Maximize Memory Throughput
+- 8.3.1. Data Transfer between Host and Device
+- 8.3.2. Device Memory Accesses
+- Global Memory
+- Size and Alignment Requirement
+- Two-Dimensional Arrays
+- Local Memory
+- Shared Memory
+- Constant Memory
+- Texture and Surface Memory
+- 8.4. Maximize Instruction Throughput
+- 8.4.1. Arithmetic Instructions
+- Single-Precision Floating-Point Division
+- Single-Precision Floating-Point Reciprocal Square Root
+- Single-Precision Floating-Point Square Root
+- Sine and Cosine
+- Integer Arithmetic
+- Half Precision Arithmetic
+- Type Conversion
+- 8.4.2. Control Flow Instructions
+- 8.4.3. Synchronization Instruction
+- 8.5. Minimize Memory Thrashing
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 9. CUDA-Enabled GPUs
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 10. C++ Language Extensions
+- 10.1. Function Execution Space Specifiers
+- 10.1.1. global
+- 10.1.2. device
+- 10.1.3. host
+- 10.1.4. Undefined behavior
+- 10.1.5. __noinline__ and __forceinline__
+- 10.2. Variable Memory Space Specifiers
+- 10.2.1. __device__
+- 10.2.2. __constant__
+- 10.2.3. __shared__
+- 10.2.4. __grid_constant__
+- 10.2.5. __managed__
+- 10.2.6. __restrict__
+- 10.3. Built-in Vector Types
+- 10.3.1. char, short, int, long, longlong, float, double
+- 10.3.2. dim3
+- 10.4. Built-in Variables
+- 10.4.1. gridDim
+- 10.4.2. blockIdx
+- 10.4.3. blockDim
+- 10.4.4. threadIdx
+- 10.4.5. warpSize
+- 10.5. Memory Fence Functions
+- 10.6. Synchronization Functions
+- 10.7. Mathematical Functions
+- 10.8. Texture Functions
+- 10.8.1. Texture Object API
+- 10.8.1.1 tex1Dfetch0
+- 10.8.1.2 tex1D0
+- 10.8.1.3 tex1Dlod0
+- 10.8.1.4 tex1DGrad()
+- 10.8.1.5 tex2D()
+- 10.8.1.6 tex2D() for sparse CUDA arrays
+- 10.8.1.7 tex2Dgather()
+- 10.8.1.8 tex2Dgather() for sparse CUDA arrays
+- 10.8.1.9 tex2DGrad()
+- 10.8.1.10 tex2DGrad() for sparse CUDA arrays
+- 10.8.1.11 tex2DLod()
+- 10.8.1.12 tex2DLod() for sparse CUDA arrays
+- 10.8.1.13 tex3D()
+- 10.8.1.14 tex3D() for sparse CUDA arrays
+- 10.8.1.15 tex3DLod()
+- 10.8.1.16 tex3DLod() for sparse CUDA arrays
+- 10.8.1.17 tex3DGrad()
+- 10.8.1.18 tex3DGrad() for sparse CUDA arrays
+- 10.8.1.19 tex1DLayered()
+- 10.8.1.20 tex1DLayeredLod()
+- 10.8.1.21 tex1DLayeredGrad()
+- 10.8.1.22 tex2DLayered()
+- 10.8.1.23 tex2DLayered() for sparse CUDA arrays
+- 10.8.1.24 tex2DLayeredLod()
+- 10.8.1.25 tex2DLayeredLod() for sparse CUDA arrays
+- 10.8.1.26 tex2DLayeredGrad()
+- 10.8.1.27 tex2DLayeredGrad() for sparse CUDA arrays
+- 10.8.1.28 texCubemap()
+- 10.8.1.29 texCubemapGrad()
+- 10.8.1.30 texCubemapLod()
+- 10.8.1.31 texCubemapLayered()
+- 10.8.1.32 texCubemapLayeredGrad()
+- 10.8.1.33 texCubemapLayeredLod()
+- 10.9. Surface Functions
+- 10.9.1. Surface Object API
+- 10.9.1.1 surf1Dread()
+- 10.9.1.2 surf1Dwrite
+- 10.9.1.3 surf2Dread()
+- 10.9.1.4 surf2Dwrite()
+- 10.9.1.5 surf3Dread()
+- 10.9.1.6 surf3Dwrite()
+- 10.9.1.7 surf1Dlayeredread()
+- 10.9.1.8 surf1DLayeredwrite()
+- 10.9.1.9 surf2DLayeredread()
+- 10.9.1.10 surf2DLayeredwrite()
+- 10.9.1.11 surfCubemapread()
+- 10.9.1.12 surfCubemapwrite()
+- 10.9.1.13 surfCubemapLayeredread()
+- 10.9.1.14 surfCubemapLayeredwrite()
+- 10.10. Read-Only Data Cache Load Function
+- 10.11. Load Functions Using Cache Hints
+- 10.12. Store Functions Using Cache Hints
+- 10.13. Time Function
+- 10.14. Atomic Functions
+- 10.14.1. Arithmetic Functions
+- 10.14.1.1 atomicAdd()
+- 10.14.1.2 atomicSub()
+- 10.14.1.3 atomicExch()
+- 10.14.1.4 atomicMin()
+- 10.14.1.5 atomicMax()
+- 10.14.1.6 atomicInc()
+- 10.14.1.7 atomicDec()
+- 10.14.1.8 atomicCAS()
+- 10.14.2. Bitwise Functions
+- 10.14.2.1 atomicAnd()
+- 10.14.2.2 atomicOr()
+- 10.14.2.3 atomicXor()
+- 10.15. Address Space Predicate Functions
+- 10.15.1. isGlobal()
+- 10.15.2. isShared()
+- 10.15.3. isConstant()
+- 10.15.4. isGridConstant()
+- 10.15.5. isLocal()
+- 10.16. Address Space Conversion Functions
+- 10.16.2. _cvta_generic_to_shared()
+- 10.16.3. _cvta_generic_to_constant()
+- 10.16.4. _cvta_generic_to_local()
+- 10.16.5. _cvta_global_to_generic()
+- 10.16.6. _cvta_shared_to_generic()
+- 10.16.7. _cvta_constant_to_generic()
+- 10.16.8. _cvta_local_to_generic()
+- 10.17. Alloca Function
+- 10.17.1. Synopsis
+- 10.17.2. Description
+- 10.17.3. Example
+- 10.18. Compiler Optimization Hint Functions
+- 10.18.1. __builtin_assume_aligned()
+- 10.18.2. __builtin_assume()
+- 10.18.3. __assume()
+- 10.18.4. __builtin_expect()
+- 10.18.5. __builtin_unreachable()
+- 10.18.6. Restrictions
+- 10.19. Warp Vote Functions
+- 10.20. Warp Match Functions
+- 10.20.1. Synopsis
+- 10.20.2. Description
+- 10.21. Warp Reduce Functions
+- 10.21.1. Synopsis
+- // add/min/max
+- 10.21.2. Description
+- 10.22. Warp Shuffle Functions
+- 10.22.1. Synopsis
+- 10.22.2. Description
+- 10.22.3. Examples
+- 10.22.3.1 Broadcast of a single value across a warp
+- 10.22.3.2 Inclusive plus-scan across sub-partitions of 8 threads
+- 10.22.3.3 Reduction across a warp
+- 10.23. Nanosleep Function
+- 10.23.1. Synopsis
+- 10.23.2. Description
+- 10.23.3. Example
+- 10.24. Warp Matrix Functions
+- 10.24.1. Description
+- 10.24.2. Alternate Floating Point
+- 10.24.3. Double Precision
+- 10.24.4. Sub-byte Operations
+- 10.24.5. Restrictions
+- 10.24.6. Element Types and Matrix Sizes
+- 10.24.7. Example
+- 10.25. DPX
+- 10.25.1. Examples
+- 10.26. Asynchronous Barrier
+- 10.26.1. Simple Synchronization Pattern
+- 10.26.2. Temporal Splitting and Five Stages of Synchronization
+- 10.26.3. Bootstrap Initialization, Expected Arrival Count, and Participation
+- 10.26.4. A Barrier's Phase: Arrival, Countdown, Completion, and Reset
+- 10.26.5. Spatial Partitioning (also known as Warp Specialization)
+- 10.26.6. Early Exit (Dropping out of Participation)
+- 10.26.7. Completion function
+- 10.26.8. Memory Barrier Primitives Interface
+- 10.26.8.1 Data Types
+- 10.26.8.2 Memory Barrier Primitives API
+- 10.27. Asynchronous Data Copies
+- 10.27.1. memcpy_async API
+- 10.27.2. Copy and Compute Pattern - Staging Data Through Shared Memory
+- 10.27.3. Without memcpy_async
+- 10.27.4. With memcpy_async
+- 10.27.5. Asynchronous Data Copies using cuda::barrier
+- 10.27.6. Performance Guidance for memcpy_async
+- 10.27.6.1 Alignment
+- 10.27.6.2 Trivially copyable
+- 10.27.6.3 Warp Entanglement - Commit
+- 10.27.6.4 Warp Entanglement - Wait
+- 10.27.6.5 Warp Entanglement - Arrive-On
+- 10.27.6.6 Keep Commit and Arrive-On Operations Converged
+- 10.28. Asynchronous Data Copies using cuda::pipeline
+- 10.28.1. Single-Stage Asynchronous Data Copies using cuda::pipeline
+- 10.28.2. Multi-Stage Asynchronous Data Copies using cuda::pipeline
+- 10.28.3. Pipeline Interface
+- 10.28.4. Pipeline Primitives Interface
+- 10.28.4.1 memcpy_async Primitive
+- 10.28.4.2 Commit Primitive
+- 10.28.4.3 Wait Primitive
+- 10.28.4.4 Arrive On Barrier Primitive
+- 10.29. Profiler Counter Function
+- 10.30. Assertion
+- 10.31. Trap function
+- 10.32. Breakpoint Function
+- 10.33. Formatted Output
+- 10.33.1. Format Specifiers
+- 10.33.2. Limitations
+- 10.33.3. Associated Host-Side API
+- 10.33.4. Examples
+- 10.34. Dynamic Global Memory Allocation and Operations
+- 10.34.1. Heap Memory Allocation
+- 10.34.2. Interoperability with Host Memory API
+- 10.34.3. Examples
+- 10.34.3.1 Per Thread Allocation
+- 10.34.3.2 Per Thread Block Allocation
+- ```c#include <stdlib.h>```
+- 10.34.3.3 Allocation Persisting Between Kernel Launches
+- 10.35. Execution Configuration
+- 10.36. Launch Bounds
+- 10.37. #pragma unroll
+- 10.38. SIMD Video Instructions
+- 10.39. Diagnostic Pragmas
+- Chapter 11. Cooperative Groups
+- 11.1. Introduction
+- 11.2. What's New in Cooperative Groups
+- 11.2.1. CUDA 12.1
+- 11.2.2. CUDA 12.0
+- 11.3. Programming Model Concept
+- 11.3.1. Composition Example
+- 11.4. Group Types
+- 11.4.1. Implicit Groups
+- 11.4.1.1 Thread Block Group
+- Public Member Functions:
+- Example:
+- 11.4.1.2 Cluster Group
+- Public Member Functions:
+- 11.4.1.3 Grid Group
+- Public Member Functions:
+- 11.4.1.4 Multi Grid Group
+- Public Member Functions:
+- 11.4.2. Explicit Groups
+- 11.4.2.1 Thread Block Tile
+- Public Member Functions:
+- Notes:
+- Examples:
+- 11.4.2.1.1 Warp-Synchronous Code Pattern
+- 11.4.2.1.2 Single thread group
+- 11.4.2.1.3 Thread Block Tile of size larger than 32
+- Public Member Functions:
+- 11.4.2.2 Coalesced Groups
+- Public Member Functions:
+- Notes:
+- Example:
+- 11.4.2.2.1 Discovery Pattern
+- 11.5. Group Partitioning
+- 11.5.1. tiled_partition
+- Example:
+- 11.5.2. labeled_partition
+- 11.5.3. binary_partition
+- Example:
+- 11.6. Group Collectives
+- 11.6.1. Synchronization
+- 11.6.1.1 sync
+- 11.6.2. Data Transfer
+- 11.6.2.1 memcpy_async
+- Usage 1
+- Example:
+- 11.6.2.2 wait and wait_prior
+- Example:
+- 11.6.3. Data Manipulation
+- 11.6.3.1 reduce
+- Example of block wide reduction:
+- 11.6.3.2 Reduce Operators
+- Functional description:
+- Example:
+- 11.6.3.3 inclusive_scan and exclusive_scan
+- Scan update
+- Example:
+- Example of stream compaction using exclusive_scan:
+- Example of dynamic buffer space allocation using exclusive_scan_update:
+- 11.6.4. Execution control
+- 11.6.4.1 invoke_one and invoke_one_broadcast
+- 11.7. Grid Synchronization
+- Example:
+- 11.8. Multi-Device Synchronization
+- Example:
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 12. CUDA Dynamic Parallelism
+- 12.1. Introduction
+- 12.1.1. Overview
+- 12.1.2. Glossary
+- 12.2. Execution Environment and Memory Model
+- 12.2.1. Execution Environment
+- 12.2.1.1 Parent and Child Grids
+- 12.2.1.2 Scope of CUDA Primitives
+- 12.2.1.3 Synchronization
+- 12.2.1.4 Streams and Events
+- 12.2.1.5 Ordering and Concurrency
+- 12.2.1.6 Device Management
+- 12.2.2. Memory Model
+- 12.2.2.1 Coherence and Consistency
+- 12.2.2.1.1 Global Memory
+- 12.2.2.1.2 Zero Copy Memory
+- 12.2.2.1.3 Constant Memory
+- 12.2.2.1.4 Shared and Local Memory
+- 12.2.2.1.5 Local Memory
+- 12.2.2.1.6 Texture Memory
+- 12.3. Programming Interface
+- 12.3.1. CUDA C++ Reference
+- 12.3.1.1 Device-Side Kernel Launch
+- 12.3.1.1.1 Launches are Asynchronous
+- 12.3.1.1.2 Launch Environment Configuration
+- 12.3.1.2 Streams
+- 12.3.1.2.1 The Implicit (NULL) Stream
+- 12.3.1.2.2 The Fire-and-Forget Stream
+- 12.3.1.2.3 The Tail Launch Stream
+- 12.3.1.3 Events
+- 12.3.1.4 Synchronization
+- 12.3.1.5 Device Management
+- 12.3.1.6 Memory Declarations
+- 12.3.1.6.1 Device and Constant Memory
+- 12.3.1.6.2 Textures and Surfaces
+- 12.3.1.6.3 Shared Memory Variable Declarations
+- 12.3.1.6.4 Symbol Addresses
+- 12.3.1.7 API Errors and Launch Failures
+- 12.3.1.7.1 Launch Setup APIs
+- 12.3.1.8 API Reference
+- 12.3.2. Device-side Launch from PTX
+- 12.3.2.1 Kernel Launch APIs
+- 12.3.2.1.1 cudaLaunchDevice
+- 12.3.2.1.2 cudaGetParameterBuffer
+- 12.3.2.2 Parameter Buffer Layout
+- 12.3.3. Toolkit Support for Dynamic Parallelism
+- 12.3.3.1 Including Device Runtime API in CUDA Code
+- 12.3.3.2 Compiling and Linking
+- 12.4. Programming Guidelines
+- 12.4.1. Basics
+- 12.4.2. Performance
+- 12.4.2.1 Dynamic-parallelism-enabled Kernel Overhead
+- 12.4.3. Implementation Restrictions and Limitations
+- 12.4.3.1 Runtime
+- 12.4.3.1.1 Memory Footprint
+- 12.4.3.1.2 Pending Kernel Launches
+- 12.4.3.1.3 Configuration Options
+- 12.4.3.1.4 Memory Allocation and Lifetime
+- 12.4.3.1.5 SM Id and Warp Id
+- 12.4.3.1.6 ECC Errors
+- 12.5. CDP2 vs CDP1
+- 12.5.1. Differences Between CDP1 and CDP2
+- 12.5.2. Compatibility and Interoperability
+- 12.6. Legacy CUDA Dynamic Parallelism (CDP1)
+- 12.6.1. Execution Environment and Memory Model (CDP1)
+- 12.6.1.1 Execution Environment (CDP1)
+- 12.6.1.1.1 Parent and Child Grids (CDP1)
+- 12.6.1.1.2 Scope of CUDA Primitives (CDP1)
+- 12.6.1.1.3 Synchronization (CDP1)
+- 12.6.1.1.4 Streams and Events (CDP1)
+- 12.6.1.1.5 Ordering and Concurrency (CDP1)
+- 12.6.1.1.6 Device Management (CDP1)
+- 12.6.1.2 Memory Model (CDP1)
+- 12.6.1.2.1 Coherence and Consistency (CDP1)
+- 12.6.1.2.1.1 Global Memory (CDP1)
+- 12.6.1.2.1.2 Zero Copy Memory (CDP1)
+- 12.6.1.2.1.3 Constant Memory (CDP1)
+- 12.6.1.2.1.4 Shared and Local Memory (CDP1)
+- 12.6.1.2.1.5 Local Memory (CDP1)
+- 12.6.1.2.1.6 Texture Memory (CDP1)
+- 12.6.2. Programming Interface (CDP1)
+- 12.6.2.1 CUDA C++ Reference (CDP1)
+- 12.6.2.1.1 Device-Side Kernel Launch (CDP1)
+- 12.6.2.1.1.1 Launches are Asynchronous (CDP1)
+- 12.6.2.1.1.2 Launch Environment Configuration (CDP1)
+- 12.6.2.1.2 Streams (CDP1)
+- 12.6.2.1.2.1 The Implicit (NULL) Stream (CDP1)
+- 12.6.2.1.3 Events (CDP1)
+- 12.6.2.1.4 Synchronization (CDP1)
+- 12.6.2.1.4.1 Block Wide Synchronization (CDP1)
+- 12.6.2.1.5 Device Management (CDP1)
+- 12.6.2.1.6 Memory Declarations (CDP1)
+- 12.6.2.1.6.1 Device and Constant Memory (CDP1)
+- 12.6.2.1.6.2 Textures and Surfaces (CDP1)
+- 12.6.2.1.6.3 Shared Memory Variable Declarations (CDP1)
+- 12.6.2.1.6.4 Symbol Addresses (CDP1)
+- 12.6.2.1.7 API Errors and Launch Failures (CDP1)
+- 12.6.2.1.7.1 Launch Setup APIs (CDP1)
+- 12.6.2.1.8 API Reference (CDP1)
+- 12.6.2.2 Device-side Launch from PTX (CDP1)
+- 12.6.2.2.1 Kernel Launch APIs (CDP1)
+- 12.6.2.2.1.1 cudaLaunchDevice (CDP1)
+- 12.6.2.2.1.2 cudaGetParameterBuffer (CDP1)
+- 12.6.2.2.2 Parameter Buffer Layout (CDP1)
+- 12.6.2.3 Toolkit Support for Dynamic Parallelism (CDP1)
+- 12.6.2.3.1 Including Device Runtime API in CUDA Code (CDP1)
+- 12.6.2.3.2 Compiling and Linking (CDP1)
+- 12.6.3. Programming Guidelines (CDP1)
+- 12.6.3.1 Basics (CDP1)
+- 12.6.3.2 Performance (CDP1)
+- 12.6.3.2.1 Synchronization (CDP1)
+- 12.6.3.2.2 Dynamic-parallelism-enabled Kernel Overhead (CDP1)
+- 12.6.3.3 Implementation Restrictions and Limitations (CDP1)
+- 12.6.3.3.1 Runtime (CDP1)
+- 12.6.3.3.1.1 Memory Footprint (CDP1)
+- 12.6.3.3.1.2 Nesting and Synchronization Depth (CDP1)
+- 12.6.3.3.1.3 Pending Kernel Launches (CDP1)
+- 12.6.3.3.1.4 Configuration Options (CDP1)
+- 12.6.3.3.1.5 Memory Allocation and Lifetime (CDP1)
+- 12.6.3.3.1.6 SM Id and Warp Id (CDP1)
+- 12.6.3.3.1.7 ECC Errors (CDP1)
+- Chapter 13. Virtual Memory Management
+- 13.1. Introduction
+- 13.2. Query for Support
+- 13.3. Allocating Physical Memory
+- 13.3.1. Shareable Memory Allocations
+- 13.3.2. Memory Type
+- 13.3.2.1. Compressible Memory
+- 13.4. Reserving a Virtual Address Range
+- 13.5. Virtual Aliasing Support
+- 13.6. Mapping Memory
+- 13.7. Control Access Rights
+- Chapter 14. Stream Ordered Memory Allocator
+- 14.1. Introduction
+- 14.2. Query for Support
+- 14.3. API Fundamentals (cudaMallocAsync and cudaFreeAsync)
+- 14.4. Memory Pools and the cudaMemPool_t
+- 14.5. Default/Implicit Pools
+- 14.6. Explicit Pools
+- 14.7. Physical Page Caching Behavior
+- 14.8. Resource Usage Statistics
+- 14.9. Memory Reuse Policies
+- 14.9.1. cudaMemPoolReuseFollowEventDependencies
+- 14.9.2. cudaMemPoolReuseAllowOpportunistic
+- 14.9.3. cudaMemPoolReuseAllowInternalDependencies
+- 14.9.4. Disabling Reuse Policies
+- 14.10. Device Accessibility for Multi-GPU Support
+- 14.11. IPC Memory Pools
+- 14.11.1. Creating and Sharing IPC Memory Pools
+- 14.11.2. Set Access in the Importing Process
+- 14.11.3. Creating and Sharing Allocations from an Exported Pool
+- 14.11.4. IPC Export Pool Limitations
+- 14.11.5. IPC Import Pool Limitations
+- 14.12. Synchronization API Actions
+- 14.13. Addendums
+- 14.13.1. cudaMemopyAsync Current Context/Device Sensitivity
+- 14.13.2. CuPointerGetAttribute Query
+- 14.13.3. cuGraphAddMemsetNode
+- 14.13.4. Pointer Attributes
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 15. Graph Memory Nodes
+- 15.1. Introduction
+- 15.2. Support and Compatibility
+- 15.3. API Fundamentals
+- 15.3.1. Graph Node APIs
+- 15.3.2. Stream Capture
+- 15.3.3. Accessing and Freeing Graph Memory Outside of the Allocating Graph
+- Ordering established by using a single stream:
+- Ordering established by using graph external event nodes:
+- 15.3.4. cudaGraphInstantiateFlagAutoFreeOnLaunch
+- 15.4. Optimized Memory Reuse
+- 15.4.1. Address Reuse within a Graph
+- 15.4.2. Physical Memory Management and Sharing
+- 15.5. Performance Considerations
+- 15.5.1. First Launch / cudaGraphUpload
+- 15.6. Physical Memory Footprint
+- 15.7. Peer Access
+- 15.7.1. Peer Access with Graph Node APIs
+- 15.7.2. Peer Access with Stream Capture
+- Chapter 16. Mathematical Functions
+- 16.1. Standard Functions
+- Single-Precision Floating-Point Functions
+- Double-Precision Floating-Point Functions
+- 16.2. Intrinsic Functions
+- Single-Precision Floating-Point Functions
+- Double-Precision Floating-Point Functions
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 17. C++ Language Support
+- 17.1. C++11 Language Features
+- 17.2. C++14 Language Features
+- 17.3. C++17 Language Features
+- 17.4. C++20 Language Features
+- 17.5. Restrictions
+- 17.5.1. Host Compiler Extensions
+- 17.5.2. Preprocessor Symbols
+- 17.5.2.1 CUDA_ARCH__
+- 17.5.3. Qualifiers
+- 17.5.3.1 Device Memory Space Specifiers
+- 17.5.3.2 Managed__ Memory Space Specifier
+- 17.5.3.3 Volatile Qualifier
+- 17.5.4. Pointers
+- 17.5.5. Operators
+- 17.5.5.1 Assignment Operator
+- 17.5.5.2 Address Operator
+- 17.5.6. Run Time Type Information (RTTI)
+- 17.5.7. Exception Handling
+- 17.5.8. Standard Library
+- 17.5.9. Namespace Reservations
+- 17.5.10. Functions
+- 17.5.10.1 External Linkage
+- 17.5.10.2 Implicitly-declared and explicitly-defaulted functions
+- 17.5.10.3 Function Parameters
+- 17.5.10.3.1 __global__ Function Argument Processing
+- 1. Memopy instead of copy constructor invocation
+- 2. Destructor may be invoked before the  $\therefore$  global_ function has finished
+- 17.5.10.3.2 Toolkit and Driver Compatibility
+- 17.5.10.3.3 Link Compatibility across Toolkit Revisions
+- 17.5.10.4 Static Variables within Function
+- 17.5.10.5 Function Pointers
+- 17.5.10.6 Function Recursion
+- 17.5.10.7 Friend Functions
+- 17.5.10.8 Operator Function
+- 17.5.11. Classes
+- 17.5.11.1 Data Members
+- 17.5.11.2 Function Members
+- 17.5.11.3 Virtual Functions
+- 17.5.11.4 Virtual Base Classes
+- 17.5.11.5 Anonymous Unions
+- 17.5.11.6 Windows-Specific
+- 17.5.12. Templates
+- 17.5.13. Trigraphs and Digraphs
+- 17.5.14. Const-qualified variables
+- 17.5.15. Long Double
+- 17.5.16. Deprecation Annotation
+- 17.5.17. Noreturn Annotation
+- 17.5.18. [[likely]] / [[unlikely]] Standard Attributes
+- 17.5.19. const and pure GNU Attributes
+- 17.5.20. Intel Host Compiler Specific
+- 17.5.21. C++11 Features
+- 17.5.21.1 Lambda Expressions
+- 17.5.21.2 std:initializer_list
+- 17.5.21.3 Rvalue references
+- 17.5.21.4 Constexpr functions and function templates
+- 17.5.21.5 Constexpr variables
+- 17.5.21.6 Inline namespaces
+- Example:
+- 17.5.21.6.1 Inline unnamed namespaces
+- 17.5.21.7 thread_local
+- 17.5.21.8 global__ functions and function templates
+- 17.5.21.9 _managed_and_shared_variables
+- 17.5.21.10 Defaulted functions
+- 17.5.22. C++14 Features
+- 17.5.22.1 Functions with deduced return type
+- 17.5.22.2 Variable templates
+- 17.5.23. C++17 Features
+- 17.5.23.1 Inline Variable
+- 17.5.23.2 Structured Binding
+- 17.5.24. C++20 Features
+- 17.5.24.1 Module support
+- 17.5.24.2 Coroutine support
+- 17.5.24.3 Three-way comparison operator
+- Example:
+- 17.5.24.4 Consteval functions
+- Example:
+- 17.6. Polymorphic Function Wrappers
+- 17.7. Extended Lambdas
+- 17.7.1. Extended Lambda Type Traits
+- 17.7.2. Extended Lambda Restrictions
+- Example:
+- Example:
+- 17.7.3. Notes on __host__ __device__ lambdas
+- 17.7.4. *this Capture By Value
+- #include <cctdina>
+- 17.7.5. Additional Notes
+- 17.8. Code Samples
+- 17.8.1. Data Aggregation Class
+- 17.8.2. Derived Class
+- 17.8.3. Class Template
+- 17.8.4. Function Template
+- 17.8.5. Functor Class
+- Chapter 18. Texture Fetching
+- 18.1. Nearest-Point Sampling
+- 18.2. Linear Filtering
+- 18.3. Table Lookup
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 19. Compute Capabilities
+- 19.1. Feature Availability
+- CUDA C++ Programming Guide, Release 12.1
+- 19.2. Features and Technical Specifications
+- 19.3. Floating-Point Standard
+- 19.4. Compute Capability 5.x
+- 19.4.1. Architecture
+- 19.4.2. Global Memory
+- 19.4.3. Shared Memory
+- 19.5. Compute Capability 6.x
+- 19.5.1. Architecture
+- 19.5.2. Global Memory
+- 19.5.3. Shared Memory
+- 19.6. Compute Capability 7.x
+- 19.6.1. Architecture
+- 19.6.2. Independent Thread Scheduling
+- 19.6.3. Global Memory
+- 19.6.4. Shared Memory
+- 19.7. Compute Capability 8.x
+- 19.7.1. Architecture
+- 19.7.2. Global Memory
+- 19.7.3. Shared Memory
+- 19.8. Compute Capability 9.0
+- 19.8.1. Architecture
+- 19.8.2. Global Memory
+- 19.8.3. Shared Memory
+- 19.8.4. Features Accelerating Specialized Computations
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 20. Driver API
+- 20.1. Context
+- 20.2. Module
+- 20.3. Kernel Execution
+- 20.4. Interoperability between Runtime and Driver APIs
+- 20.5. Driver Entry Point Access
+- 20.5.1. Introduction
+- 20.5.2. Driver Function Typedefs
+- 20.5.3. Driver Function Retrieval
+- 20.5.3.1 Using the driver API
+- 20.5.3.2 Using the runtime API
+- 20.5.3.3 Retrieve per-thread default stream versions
+- 20.5.3.4 Access new CUDA features
+- 20.5.4. Potential Implications with cuGetProcAddress
+- 20.5.4.1 Implications with cuGetProcAddress vs Implicit Linking
+- 20.5.4.2 Compile Time vs Runtime Version Usage in cuGetProcAddress
+- 20.5.4.3 API Version Bumps with Explicit Version Checks
+- 20.5.4.4 Issues with Runtime API Usage
+- 20.5.4.5 Issues with Runtime API and Dynamic Versioning
+- 20.5.4.6 Implications to API/ABI
+- 20.5.5. Determining cuGetProcAddress Failure Reasons
+- Chapter 21. CUDA Environment Variables
+- Chapter 22. Unified Memory Programming
+- 22.1. Unified Memory Introduction
+- 22.1.1. System Requirements
+- 22.1.2. Simplifying GPU Programming
+- 22.1.3. Data Migration and Coherency
+- 22.1.4. GPU Memory Oversubscription
+- 22.1.5. Multi-GPU
+- 22.1.6. System Allocator
+- 22.1.7. Hardware Coherency
+- 22.1.8. Access Counters
+- 22.2. Programming Model
+- 22.2.1. Managed Memory Opt In
+- 22.2.1.1 Explicit Allocation Using cudaMallocManaged()
+- 22.2.1.2 Global-Scope Managed Variables Using __managed__
+- 22.2.2. Coherency and Concurrency
+- 22.2.2.1 GPU Exclusive Access To Managed Memory
+- 22.2.2.2 Explicit Synchronization and Logical GPU Activity
+- 22.2.2.3 Managing Data Visibility and Concurrent CPU + GPU Access with Streams
+- 22.2.2.4 Stream Association Examples
+- 22.2.2.5 Stream Attach With Multithreaded Host Programs
+- 22.2.2.6 Advanced Topic: Modular Programs and Data Access Constraints
+- 22.2.2.7 Memcopy()/Memset() Behavior With Managed Memory
+- 22.2.3. Language Integration
+- 22.2.3.1 Host Program Errors with __managed__ Variables
+- 22.2.4. Querying Unified Memory Support
+- 22.2.4.1 Device Properties
+- 22.2.4.2 Pointer Attributes
+- 22.2.5. Advanced Topics
+- 22.2.5.1 Managed Memory with Multi-GPU Programs on pre-6.x Architectures
+- 22.2.5.2 Using fork() with Managed Memory
+- 22.3. Performance Tuning
+- 22.3.1. Data Prefetching
+- 22.3.2. Data Usage Hints
+- 22.3.3. Querying Usage Attributes
+- CUDA C++ Programming Guide, Release 12.1
+- Chapter 23. Lazy Loading
+- 23.1. What is Lazy Loading?
+- 23.2. Lazy Loading version support
+- 23.2.1. Driver
+- 23.2.2. Toolkit
+- 23.2.3. Compiler
+- 23.3. Triggering loading of kernels in lazy mode
+- 23.3.1. CUDA Driver API
+- 23.3.2. CUDA Runtime API
+- 23.4. Querying whether Lazy Loading is turned on
+- 23.5. Possible issues when adopting lazy loading
+- 23.5.1. Concurrent execution
+- 23.5.2. Allocators
+- 23.5.3. Autotuning
